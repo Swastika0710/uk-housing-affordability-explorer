@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An interactive research explorer comparing UK regional housing affordability using house prices, earnings, deposit requirements and price-to-earnings ratios.">
 <title>UK Housing Affordability Explorer</title>
 <link rel="stylesheet" href="styles.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
 <body>
 <header>
@@ -14,29 +15,51 @@
 </header>
 <main>
 <section class="controls">
-<label for="region">Select region</label>
-<select id="region"></select>
+<div>
+<label for="region">Primary region</label>
+<select id="region" aria-label="Select primary region"></select>
+</div>
+<div>
+<label for="compareRegion">Compare with</label>
+<select id="compareRegion" aria-label="Select comparison region"></select>
+</div>
+<div>
 <label for="year">Select year</label>
-<select id="year"></select>
+<select id="year" aria-label="Select year"></select>
+</div>
 </section>
-<section class="metrics">
-<div class="card"><span id="affordability"></span><small>Affordability ratio</small></div>
+<section class="metrics" aria-live="polite">
+<div class="card"><span id="affordability"></span><small>Price-to-earnings ratio</small></div>
 <div class="card"><span id="price"></span><small>Average house price</small></div>
 <div class="card"><span id="earnings"></span><small>Average annual earnings</small></div>
+<div class="card"><span id="years"></span><small>Years of full earnings to buy</small></div>
+<div class="card"><span id="deposit"></span><small>10% deposit needed</small></div>
 <div class="card"><span id="status"></span><small>Affordability pressure</small></div>
 </section>
 <section>
 <h2>Affordability trend</h2>
-<canvas id="trendChart"></canvas>
+<canvas id="trendChart" role="img" aria-label="Line chart comparing the price-to-earnings affordability ratio over time for the selected primary and comparison regions"></canvas>
 </section>
 <section>
+<div class="legend" aria-label="Affordability pressure colour legend">
+<span><i class="dot lower"></i>Lower: below 6</span>
+<span><i class="dot moderate"></i>Moderate: 6 to 7.9</span>
+<span><i class="dot high"></i>High: 8 to 9.9</span>
+<span><i class="dot very-high"></i>Very high: 10 or above</span>
+</div>
 <h2>Regional comparison</h2>
-<canvas id="regionChart"></canvas>
+<canvas id="regionChart" role="img" aria-label="Bar chart comparing the price-to-earnings affordability ratio across UK regions for the selected year"></canvas>
 </section>
 <section class="notes">
-<h2>Research note</h2>
-<p>The affordability ratio compares average house prices with average annual earnings. A higher ratio means housing is less affordable relative to local earnings.</p>
-<p><strong>Data note:</strong> This demonstration uses illustrative regional estimates for research and portfolio purposes. It is not an official statistical release and should not be used for policy decisions.</p>
+<h2>Methods and limitations</h2>
+<p>The affordability ratio is calculated in the application as average house price divided by average annual earnings:</p>
+<p><code>affordability ratio = house price / annual earnings</code></p>
+<p>The “years of full earnings to buy” figure divides the house price by annual earnings. The deposit figure shows 10% of the selected region’s average house price.</p>
+<p><strong>Important limitation:</strong> This demonstration currently uses illustrative regional estimates, not official ONS or HM Land Registry statistics. The figures use average values rather than the median-based measures used in many official affordability statistics, so they are not directly comparable with official publications. A future version will replace these estimates with sourced, openly licensed data and record the download date.</p>
+</section>
+<section class="notes">
+<h2>Related research</h2>
+<p>This project connects to <a href="https://github.com/Swastika0710/public-value-recovery-research">Public Value Recovery Research</a>. Housing affordability is one dimension of public value in post-crisis recovery and built-environment planning.</p>
 </section>
 </main>
 <footer>

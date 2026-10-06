@@ -8,38 +8,52 @@ How does housing affordability vary across UK regions, and which areas face the 
 
 ## What the project shows
 
-The explorer compares average house prices with average annual earnings using a **price-to-earnings affordability ratio**. A higher ratio means housing is less affordable relative to local earnings.
+The explorer compares average house prices with average annual earnings using a **price-to-earnings affordability ratio**, calculated directly in the application:
+
+```text
+affordability ratio = average house price / average annual earnings
+```
 
 Users can:
 
-- Select a UK region
+- Select a primary UK region
+- Compare it with a second region
 - Select a year
 - View affordability, average house price and average earnings
-- Compare affordability trends over time
+- See how many years of full earnings would be needed to buy
+- See the 10% deposit required
 - Compare affordability pressure across regions
 
-## Key findings
+## Affordability pressure legend
 
-- London has the highest affordability pressure, with a price-to-earnings ratio above 11 in every year shown.
-- The South East, East of England and South West also show high affordability pressure.
-- The North East, Scotland and Northern Ireland have comparatively lower affordability ratios.
-- Affordability pressure remains materially higher in London and southern England than in northern regions and devolved nations.
+| Pressure level | Price-to-earnings ratio |
+|---|---|
+| Lower | Below 6 |
+| Moderate | 6 to 7.9 |
+| High | 8 to 9.9 |
+| Very high | 10 or above |
 
-## Data note
+The same thresholds are used for the pressure label and the regional comparison chart colours.
 
-This project uses **illustrative regional estimates** for demonstration and portfolio purposes. It is not an official statistical release and should not be used for policy, financial or academic decision-making.
+## Data and limitations
 
-A future version can replace the embedded estimates with openly licensed data from sources such as the UK House Price Index and the Annual Survey of Hours and Earnings.
+This project currently uses **illustrative regional estimates** for demonstration and portfolio purposes. It is not an official statistical release and should not be used for policy, financial or academic decision-making.
+
+The estimates use average values rather than the median-based measures commonly used in official affordability statistics, so they are not directly comparable with official publications.
+
+A future version will replace the embedded estimates with openly licensed data from the [Office for National Statistics](https://www.ons.gov.uk/) and [HM Land Registry UK House Price Index](https://www.gov.uk/government/collections/uk-house-price-index-reports), calculate ratios directly from source values, and record the data download date.
 
 ## Methods
 
-The affordability ratio is calculated as:
+1. Select a region and year.
+2. The application retrieves the stored average house price and average annual earnings.
+3. It calculates the affordability ratio as price divided by earnings.
+4. It calculates years of full earnings needed to buy and the 10% deposit requirement.
+5. It classifies affordability pressure using the thresholds above.
 
-```text
-Affordability ratio = Average house price / Average annual earnings
-```
+## Related research
 
-The site presents regional trends and comparisons using interactive charts.
+This project connects to [Public Value Recovery Research](https://github.com/Swastika0710/public-value-recovery-research). Housing affordability is one dimension of public value in post-crisis recovery and built-environment planning.
 
 ## How to run locally
 
@@ -49,14 +63,6 @@ cd uk-housing-affordability-explorer
 ```
 
 Then open `index.html` in a web browser.
-
-## Live project
-
-Once GitHub Pages is enabled, the project will be available at:
-
-```text
-https://swastika0710.github.io/uk-housing-affordability-explorer/
-```
 
 ## Licence
 
